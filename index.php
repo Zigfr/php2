@@ -3,11 +3,8 @@
     use App\Models\User;
     require __DIR__ .'/autoload.php';
 
-    $users = \App\Models\User::findAll();
-    function sendEmail(User $user, string $massage)
-    {
-        echo 'Почта уходит на ' . $user->email;
-    }
-    sendEmail($users[0], 'Hello!');
-
+    $user = new User();
+    $user->name = 'Vasya';
+    $user->email = 'v@pupkin.ru';
+    $user->insert();
 ?>
