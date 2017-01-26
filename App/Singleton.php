@@ -2,9 +2,9 @@
 
 namespace App;
 
-abstract class Singleton
+ trait Singleton
 {
-    public $counter;
+
     protected static $instance;
     protected function __construct()
     {
