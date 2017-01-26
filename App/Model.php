@@ -7,11 +7,17 @@ abstract class Model
     const TABLE = '';
     public static function findAll()
     {
-        $db = new \App\Db();
+        $db = Db::instance();
         return $db->query(
             'SELECT * FROM '. static::TABLE ,
             static::class
         );
+    }
+/*
+    public static function findAlll()
+    {
+        $db = new \App\Db();
+        return $db->querry('SELECT * FROM '. static::TABLE);
     }
 
     public static function findById($id)
@@ -27,5 +33,6 @@ abstract class Model
             return false;
         }
     }
+*/
     //abstract public function getName();
 }

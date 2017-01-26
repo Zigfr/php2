@@ -5,9 +5,10 @@ namespace App;
 
 
 class Db
+    extends Singleton
 {
     protected $dbh;
-    public function __construct()
+    protected function __construct()
     {
       $this->dbh = new \PDO('mysql:host=127.0.0.1;dbname=test', 'root', '');
     }
@@ -24,12 +25,18 @@ class Db
     {
         $sth = $this->dbh->prepare($sql);
         $res = $sth->execute($this->mass);
-        if(false !== $res){
-          return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
+        if (false !== $res) {
+            return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
         }
         return [];
-
-
-
     }
+        public function querry($sql)
+        {
+            $sth = $this->dbh->prepare($sql);
+            $res = $sth->execute($this->mass);
+            if(false !== $res){
+                return $sth->fetchAll();
+            }
+            return [];
+         }
 }

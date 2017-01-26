@@ -1,12 +1,13 @@
 <?php
+    use App\Model;
+    use App\Models\User;
     require __DIR__ .'/autoload.php';
 
-    $id = 5;
-   // \App\Model::findById($id);
-   $res = \App\Models\User::findById($id);
-   var_dump($res);
-/*
     $users = \App\Models\User::findAll();
-    var_dump($users);
-*/
+    function sendEmail(User $user, string $massage)
+    {
+        echo 'Почта уходит на ' . $user->email;
+    }
+    sendEmail($users[0], 'Hello!');
+
 ?>
