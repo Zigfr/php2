@@ -13,9 +13,13 @@ $user = new User();
 var_dump($user);
 */
 require __DIR__ .'/autoload.php';
+//$users = \App\Models\User::findAll();
 
-$users = \App\Models\User::findAll();
+$view = new \App\View;
+$view->title = 'My cool site!';
+$view->users = \App\Models\User::findAll();
+echo $view->render(__DIR__ .'/App/templates/index.php');
 
-include __DIR__ .'/App/templates/index.php';
+//include __DIR__ .'/App/templates/index.php';
 
 ?>
