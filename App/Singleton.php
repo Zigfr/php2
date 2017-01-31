@@ -17,4 +17,4 @@ namespace App;
         }
             return static::$instance;
     }
-}
+} 

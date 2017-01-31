@@ -1,9 +1,15 @@
 <?php
 require __DIR__ .'/autoload.php';
 
-$s = \App\Singleton::instance();
-$s->counter = 1;
-var_dump($s);
+$config = App\Config::instance();
+$res = $config->data['host'];
+var_dump($res);
 
-$s = \App\Singleton::instance();
-var_dump($s);
+/*
+$data = new App\Models\User();
+$data->email = 'mail.ru';
+$data->name = 'g';
+//$data->id = 0;
+$data->insert();
+//var_dump($data);
+*/

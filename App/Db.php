@@ -7,6 +7,7 @@ namespace App;
 class Db
 {
     use Singleton;
+    
     protected $dbh;
     protected function __construct()
     {
@@ -29,10 +30,10 @@ class Db
         }
         return [];
     }
-        public function querry($sql)
+        public function querry($sql, $param = [])
         {
             $sth = $this->dbh->prepare($sql);
-            $res = $sth->execute($this->mass);
+            $res = $sth->execute($param);
             if(false !== $res){
                 return $sth->fetchAll();
             }

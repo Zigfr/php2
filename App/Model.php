@@ -29,22 +29,36 @@ abstract class Model
         $columns = [];
 
         foreach ($this as $index => $k) {
+
             if ('id' == $index) {
                 continue;
             }
+
             $columns[] = $index;
             $values[':' . $index] = $k;
         }
+        
         $sql = 'INSERT INTO ' . static::TABLE . '
         (' . implode(',', $columns) . ')
         VALUES
         (' . implode(',', array_keys($values)) . ')
         ';
+
         $db = Db::instance();
         $db->execute($sql, $values);
-    
+        $sql1 = "SELECT `id` FROM `users` WHERE {$columns[0]} = :{$columns[0]}";
+        
+        $mass[] = array($columns[0] => $values[":{$columns[0]}"]);
+        $dat = $mass[0];
+        $val = $db->querry($sql1, $dat);
+        foreach($val as $index => $key)
+        {
+            $ind = $key['id'];
+        }
+        var_dump($ind);
     }
 
+/*
     public static function findById($id)
     {
         $db = new \App\Db();
@@ -57,28 +71,9 @@ abstract class Model
         }else {
             return false;
         }
-    }
+*/
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
 
     //abstract public function getName();
